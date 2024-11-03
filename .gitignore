@@ -1,0 +1,74 @@
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# JupyterLab workspace settings
+.jupyter/
+.lab/
+workspace.json
+
+# Jupyter Notebook outputs
+*.nbconvert/
+
+# Python virtual environments
+venv/
+.env/
+.venv/
+env/
+env.bak/
+.python-version
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Data files
+*.csv
+*.parquet
+*.json
+*.tsv
+*.data
+*.dat
+*.tmp
+*.log
+
+# Configuration files
+*.config
+*.conf
+config.yaml
+config.json
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Package files
+*.egg
+*.egg-info/
+*.egg-info
+dist/
+build/
+*.so
+
+# Log files
+logs/
+*.log
+*.out
+*.err
+
+# Node.js modules (if using Node packages with JupyterLab extensions)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Hidden files
+._*
+
+# VSCode settings (if using VSCode with Jupyter)
+.vscode/
+*.code-workspace
+
+# Git-related
+*.swp
