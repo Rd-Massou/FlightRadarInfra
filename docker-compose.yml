@@ -2,13 +2,13 @@ services:
   spark-master:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.spark-node
     container_name: spark-master
     environment:
       - SPARK_ROLE=master
     ports:
-      - "8080:8080" # Spark Web UI
-      - "7077:7077" # Spark Master Port
+      - "8080:8080"  # Spark Web UI
+      - "7077:7077"  # Spark Master Port
     networks:
       - spark-net
     volumes:
@@ -25,7 +25,7 @@ services:
   spark-worker:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.spark-node
     environment:
       - SPARK_ROLE=worker
     depends_on:
@@ -44,6 +44,22 @@ services:
           cpus: "${WORKER_CPU_RESERVATION}"   # CPU reservation for each worker from .env
           memory: "${WORKER_MEM_RESERVATION}" # Memory reservation for each worker from .env
   
+  jupyterlab:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyterlab  # Specify Dockerfile for JupyterLab
+    ports:
+      - "8888:8888"
+    environment:
+      - SPARK_MASTER_URL=spark://spark-master:7077
+    depends_on:
+      - spark-master
+    networks:
+      - spark-net
+    volumes:
+      - ./resources:/home/resources
+      - ./notebooks:/home/work
+
 networks:
   spark-net:
     driver: bridge

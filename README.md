@@ -6,9 +6,10 @@ This project sets up a JupyterLab instance backed up by an Apache Spark cluster 
 
 The following files are included in the project:
 
-- **Dockerfile**: Defines a Docker image for a Spark node using Alpine Linux and OpenJDK.
+- **Dockerfile.spark-node**: Defines a Docker image for a Spark node using Alpine Linux and `OpenJDK@1.8`.
+- **Dockerfile.jupyterlab**: Defines a Docker image for JupyterLab using Alpine Linux and `Python@3.10.12`.
 - **entrypoint.sh**: Entrypoint script to start Spark as a master or worker node based on the container role.
-- **docker-compose.yml**: Docker Compose file to launch the Spark cluster with a master node and scalable worker nodes.
+- **docker-compose.yml**: Docker Compose file to launch the Spark cluster with a master node and scalable worker nodes as well as the JupyterLab service.
 - **.env**: Environment file to configure the number of Spark worker nodes.
 
 ## Prerequisites
@@ -64,3 +65,5 @@ To stop and remove the Spark cluster, run:
 ```bash
 docker-compose down
 ```
+## Customizing the Setup
+Feel free to modify the .env file or the docker-compose.yml file to further customize the cluster setup as per your requirements.
