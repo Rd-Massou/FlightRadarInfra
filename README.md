@@ -65,5 +65,21 @@ To stop and remove the Spark cluster, run:
 ```bash
 docker-compose down
 ```
+
+## Testing the Spark Cluster
+To test the cluster, go to [JupyterLab](http://localhost:8888). you can run the SparkExample notebook in the path notebooks/SparkExample.ipynb.
+
+If you have a Spark app JAR ready to use (or get one [here](https://github.com/Rd-Massou/FlightRadarSpark.git) by cloning and running sbt assembly inside the dev container), copy it to the resources/jars folder and run the following command: 
+
+```bash
+docker exec -it spark-master spark-submit \
+  --class com.example.batch.ExampleJobBatch \
+  --master spark://spark-master:7077 \
+  /resources/jars/sparkapp_2.12-1.0.jar \
+  --in /resources/data/DUMMY_DATASET_CSV \
+  --out /resources/data/DUMMY_DATASET_DELTA \
+  --partition DAY=2024-10-11
+```
+
 ## Customizing the Setup
 Feel free to modify the .env file or the docker-compose.yml file to further customize the cluster setup as per your requirements.
